@@ -8,7 +8,8 @@
 	<packaging>jar</packaging>
 	<version>1.0</version>
 	<properties>
-		<muleVersion>1.4.1</muleVersion>
+		<muleVersion>2.0.0-M2</muleVersion>
+		<springVersion>2.0.6</springVersion>
 	</properties>
 	<distributionManagement>
 		<repository>
@@ -43,6 +44,30 @@
 					<appendAssemblyId>false</appendAssemblyId>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>        
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-idea-plugin</artifactId>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	<name>Mule Spring Proxies</name>
@@ -55,17 +80,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.mule.transports</groupId>
-			<artifactId>mule-transport-tcp</artifactId>
-			<version>${muleVersion}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mule.transports</groupId>
-			<artifactId>mule-transport-file</artifactId>
-			<version>${muleVersion}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mule.transports</groupId>
-			<artifactId>mule-transport-stream</artifactId>
+			<artifactId>mule-transport-stdio</artifactId>
 			<version>${muleVersion}</version>
 		</dependency>
 		<dependency>
@@ -73,17 +88,22 @@
 			<artifactId>mule-module-client</artifactId>
 			<version>${muleVersion}</version>
 		</dependency>
-                <dependency>
-                        <groupId>org.mule</groupId>
-                        <artifactId>mule-core</artifactId>
-		        <version>${muleVersion}</version>
-                </dependency>
-                <dependency>
-                        <groupId>org.mule.tests</groupId>
-                        <artifactId>mule-tests-functional</artifactId>
-		        <version>${muleVersion}</version>
-                        <scope>test</scope>
-                </dependency>
-	</dependencies>
-	
+        <dependency>
+                <groupId>org.mule</groupId>
+                <artifactId>mule-core</artifactId>
+                <version>${muleVersion}</version>
+        </dependency>
+        <dependency>
+                <groupId>org.mule.tests</groupId>
+                <artifactId>mule-tests-functional</artifactId>
+                <version>${muleVersion}</version>
+                <scope>test</scope>
+        </dependency>
+        <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-aop</artifactId>
+		    <version>${springVersion}</version>
+		    <scope>compile</scope>
+	    </dependency>
+	</dependencies>	
 </project>
