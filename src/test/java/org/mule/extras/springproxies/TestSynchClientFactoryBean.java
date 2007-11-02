@@ -34,7 +34,7 @@ public class TestSynchClientFactoryBean extends FunctionalTestCase {
     public void testMethodsUsingVM() throws UMOException {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("synchclient-client-config.xml");
 
-        AService service = (AService) ctx.getBean("testService-vm");
+        AService service = (AService) ctx.getBean("testServiceVM");
 
         // methodInteger(Integer i)
         {
