@@ -18,7 +18,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 
-public class TestSynchClientFactoryBean extends FunctionalTestCase {
+public class SynchClientFactoryBeanTestCase extends FunctionalTestCase {
 
     @Override
     protected String getConfigResources() {
