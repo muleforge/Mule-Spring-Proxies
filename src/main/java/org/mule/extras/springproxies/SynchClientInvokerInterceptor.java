@@ -53,7 +53,7 @@ public class SynchClientInvokerInterceptor implements MethodInterceptor, Initial
         // TODO use responseTransformer
         return msg.getPayload();
     }
-
+    
     public void afterPropertiesSet() throws java.lang.Exception {
         if (this.endpointAdress == null) {
             throw new IllegalArgumentException("endpointAdress is required");
@@ -68,5 +68,13 @@ public class SynchClientInvokerInterceptor implements MethodInterceptor, Initial
 
     public void setEndpointAdress(String endpointAdress) {
         this.endpointAdress = endpointAdress;
+    }
+
+    public MuleClient getClient() {
+        return client;
+    }
+
+    public void setClient(MuleClient client) {
+        this.client = client;
     }
 }
