@@ -13,8 +13,10 @@ import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.mule.MuleServer;
 import org.mule.config.MuleProperties;
 import org.mule.extras.client.MuleClient;
+import org.mule.umo.UMOManagementContext;
 import org.mule.umo.UMOMessage;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -26,16 +28,17 @@ import java.util.Map;
  * Invoker to make a synchronous call to a Mule Server
  */
 public class SynchClientInvokerInterceptor implements MethodInterceptor, InitializingBean {
+
     protected transient Log logger = LogFactory.getLog(getClass());
 
-    private String endpointAdress;
+    private String endpointAddress;
     private MuleClient client;  //TODO Should MuleClient be used?
 
     // private AbstractTransformer requestTransformer;
     // private AbstractTransformer responseTransformer;
 
     /**
-     * Invoke method on Mule service defined by the supplied endpointAdress and called method
+     * Invoke method on Mule service defined by the supplied endpointAddress and called method
      */
     public Object invoke(MethodInvocation invocation) throws Throwable {
         if (logger.isDebugEnabled()) {
@@ -48,26 +51,28 @@ public class SynchClientInvokerInterceptor implements MethodInterceptor, Initial
         Map<String, String> props = new HashMap<String, String>();
         props.put(MuleProperties.MULE_METHOD_PROPERTY, method.getName());
 
-        UMOMessage msg = client.send(endpointAdress, args, props);
+        UMOMessage msg = client.send(endpointAddress, args, props);
 
         // TODO use responseTransformer
         return msg.getPayload();
     }
-    
+
     public void afterPropertiesSet() throws java.lang.Exception {
-        if (this.endpointAdress == null) {
-            throw new IllegalArgumentException("endpointAdress is required");
+        if (this.endpointAddress == null) {
+            throw new IllegalArgumentException("endpointAddress is required");
         }
 
-        client = new MuleClient();
+        // Is this necessary? TestCase fails if run together with other TestCases
+        UMOManagementContext ctx = MuleServer.getManagementContext();
+        client = new MuleClient(ctx != null ? ctx : null);
     }
 
-    public String getEndpointAdress() {
-        return endpointAdress;
+    public String getEndpointAddress() {
+        return endpointAddress;
     }
 
-    public void setEndpointAdress(String endpointAdress) {
-        this.endpointAdress = endpointAdress;
+    public void setEndpointAddress(String endpointAddress) {
+        this.endpointAddress = endpointAddress;
     }
 
     public MuleClient getClient() {

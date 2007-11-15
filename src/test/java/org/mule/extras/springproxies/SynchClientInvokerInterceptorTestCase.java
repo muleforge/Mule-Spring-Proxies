@@ -38,7 +38,7 @@ public class SynchClientInvokerInterceptorTestCase extends TestCase {
         final MuleClient muleClient = context.mock(MuleClient.class);
 
         // -- Wire dependencies --
-        interceptor.setEndpointAdress(endpointAddress);
+        interceptor.setEndpointAddress(endpointAddress);
         interceptor.setClient(muleClient);
         ProxyFactory pf = new ProxyFactory(new Class[]{AService.class});
         pf.addAdvice(interceptor);
@@ -73,19 +73,18 @@ public class SynchClientInvokerInterceptorTestCase extends TestCase {
                 fail("IllegalArgumentException should have been thrown");
             } catch (Exception e) {
                 assertTrue(e instanceof IllegalArgumentException);
-                assertEquals("endpointAdress is required", e.getMessage());
+                assertEquals("endpointAddress is required", e.getMessage());
             }
         }
 
         // Ok
         {
             SynchClientInvokerInterceptor interceptor = new SynchClientInvokerInterceptor();
-            interceptor.setEndpointAdress("address");
+            interceptor.setEndpointAddress("address");
             try {
                 interceptor.afterPropertiesSet();
-
             } catch (Exception e) {
-                fail("No Exception should have been thrown");
+                fail("No Exception should have been thrown, message=" + e.getMessage());
             }
         }
     }

@@ -2,10 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
-       
-  <bean id="testServiceVM" class="org.mule.extras.springproxies.SynchClientFactoryBean">
-    <property name="serviceInterface" value="org.mule.extras.springproxies.testmodel.AService"/>
-    <property name="endpointAdress" value="vm://testIn" />
-  </bean>
-       
-</beans>       
+
+    <bean id="testServiceVM" class="org.mule.extras.springproxies.SynchClientFactoryBean">
+        <property name="serviceInterface" value="org.mule.extras.springproxies.testmodel.AService"/>
+        <property name="endpointAddress" value="vm://testIn"/>
+    </bean>
+
+</beans>

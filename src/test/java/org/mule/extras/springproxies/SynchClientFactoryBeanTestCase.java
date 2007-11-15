@@ -28,8 +28,8 @@ public class SynchClientFactoryBeanTestCase extends FunctionalTestCase {
     @Override
     protected void doSetUp() throws Exception {
         org.apache.log4j.BasicConfigurator.configure();
-        super.doSetUp();
     }
+
 
     public void testMethodsUsingVM() throws UMOException {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("synchclient-client-config.xml");
