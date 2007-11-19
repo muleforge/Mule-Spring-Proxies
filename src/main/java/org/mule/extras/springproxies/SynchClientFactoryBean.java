@@ -15,6 +15,7 @@ import org.springframework.beans.factory.FactoryBean;
 import org.springframework.util.ClassUtils;
 
 public class SynchClientFactoryBean extends SynchClientInvokerInterceptor implements FactoryBean, BeanClassLoaderAware {
+
     private Object proxy;
     private Class serviceInterface;
     private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
@@ -40,7 +41,7 @@ public class SynchClientFactoryBean extends SynchClientInvokerInterceptor implem
         super.afterPropertiesSet();
 
         if (this.serviceInterface == null) {
-            throw new IllegalArgumentException("businessInterface is required");
+            throw new IllegalArgumentException("serviceInterface is required");
         }
         this.proxy = new ProxyFactory(this.serviceInterface, this).getProxy(this.beanClassLoader);
     }
