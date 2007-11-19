@@ -13,10 +13,8 @@ import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.mule.MuleServer;
 import org.mule.config.MuleProperties;
 import org.mule.extras.client.MuleClient;
-import org.mule.umo.UMOManagementContext;
 import org.mule.umo.UMOMessage;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -63,8 +61,9 @@ public class SynchClientInvokerInterceptor implements MethodInterceptor, Initial
         }
 
         // Is this necessary? TestCase fails if run together with other TestCases
-        UMOManagementContext ctx = MuleServer.getManagementContext();
-        client = new MuleClient(ctx != null ? ctx : null);
+        //UMOManagementContext ctx = MuleServer.getManagementContext();
+        //client = new MuleClient(ctx != null ? ctx : null);
+        client = new MuleClient();
     }
 
     public String getEndpointAddress() {

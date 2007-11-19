@@ -1,6 +1,5 @@
 package org.mule.extras.springproxies;
 
-import junit.framework.TestCase;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.lib.legacy.ClassImposteriser;
@@ -8,6 +7,7 @@ import org.mule.config.MuleProperties;
 import org.mule.extras.client.MuleClient;
 import org.mule.extras.springproxies.testmodel.AService;
 import org.mule.impl.MuleMessage;
+import org.mule.tck.AbstractMuleTestCase;
 import org.mule.umo.UMOException;
 import org.mule.umo.UMOMessage;
 import org.springframework.aop.framework.ProxyFactory;
@@ -15,7 +15,7 @@ import org.springframework.aop.framework.ProxyFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SynchClientInvokerInterceptorTestCase extends TestCase {
+public class SynchClientInvokerInterceptorTestCase extends AbstractMuleTestCase {
 
     public void testInvokeOk() throws UMOException {
         Mockery context = new Mockery() {
