@@ -60,9 +60,6 @@ public class SynchClientInvokerInterceptor implements MethodInterceptor, Initial
             throw new IllegalArgumentException("endpointAddress is required");
         }
 
-        // Is this necessary? TestCase fails if run together with other TestCases
-        //UMOManagementContext ctx = MuleServer.getManagementContext();
-        //client = new MuleClient(ctx != null ? ctx : null);
         client = new MuleClient();
     }
 
